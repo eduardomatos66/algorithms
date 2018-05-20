@@ -64,10 +64,10 @@ class Entry(object):
             elif a and b and '{},{}'.format(b, a) in COMPUTER_DISTANCES:
                 value += COMPUTER_DISTANCES.get('{},{}'.format(b, a))
             else:
-                print('It was not possible to find possible connection between {} and {} in {}'.format(a, b, self))
+                # print('It was not possible to find possible connection between {} and {} in {}'.format(a, b, self))
                 value = -1
                 return
-        print('{} has value {}'.format(self, value))
+        # print('{} has value {}'.format(self, value))
         self.value = value
 
 
@@ -144,7 +144,7 @@ def hill_climbing(init, valid_set):
         elif not best_neighbor:
             return current
         current = best_neighbor
-        print('======================================== {} - {} ======================================== '.format(
+        print('==== {} - {} ===='.format(
             current, current.value)
         )
 
@@ -154,15 +154,18 @@ def main():
     Main method to algorithm
     :return:
     """
-    # initial_position = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12'] # 604
+    initial_position = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12'] # 604
     # initial_position = ['C8', 'C5', 'C4', 'C1', 'C12', 'C11', 'C3', 'C6', 'C9', 'C7', 'C10', 'C2'] # 716
-    initial_position = ['C5', 'C6', 'C10', 'C7', 'C9', 'C12', 'C11', 'C8', 'C4', 'C3', 'C2', 'C1'] #584
+    # initial_position = ['C5', 'C6', 'C10', 'C7', 'C9', 'C12', 'C11', 'C8', 'C4', 'C3', 'C2', 'C1'] # 584
+    # initial_position = ['C4', 'C8', 'C7', 'C2', 'C1', 'C12', 'C11', 'C3', 'C5', 'C6', 'C10', 'C9'] # 389
 
-    initial_entry = Entry(initial_position)
-    initial_entry.evaluate_function()
+    # initial_entry = Entry(initial_position)
+    # initial_entry.evaluate_function()
+    max = None
+    while not max or max.value > 389: # best value registered
+        max = hill_climbing(None, initial_position)
 
-    # max = hill_climbing(None, initial_position)
-    max = hill_climbing(initial_entry, None)
+    # max = hill_climbing(initial_entry, None)
 
     print('\nThe best option is {} with value equals to {}'.format(max, max.value))
 
