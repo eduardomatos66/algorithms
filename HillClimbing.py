@@ -80,7 +80,7 @@ def get_random_init(position_set):
     random.shuffle(position_set)
     entry = Entry(position_set)
     entry.evaluate_function()
-    while entry.value < 0:
+    while entry.value == sys.maxsize:
         random.shuffle(position_set)
         entry = Entry(position_set)
         entry.evaluate_function()
@@ -154,9 +154,10 @@ def main():
     Main method to algorithm
     :return:
     """
-    initial_position = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12']
+    # initial_position = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12'] # 604
+    # initial_position = ['C8', 'C5', 'C4', 'C1', 'C12', 'C11', 'C3', 'C6', 'C9', 'C7', 'C10', 'C2'] # 716
+    initial_position = ['C5', 'C6', 'C10', 'C7', 'C9', 'C12', 'C11', 'C8', 'C4', 'C3', 'C2', 'C1'] #584
 
-    # initial_position = ['C8', 'C5', 'C4', 'C1', 'C12', 'C11', 'C3', 'C6', 'C9', 'C7', 'C10', 'C2']
     initial_entry = Entry(initial_position)
     initial_entry.evaluate_function()
 
