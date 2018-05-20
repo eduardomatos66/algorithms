@@ -137,16 +137,18 @@ def hill_climbing(init, valid_set):
     climbing = True
     current = init or get_random_init(valid_set)
     current.evaluate_function()
-    while True:
+    while climbing:
         best_neighbor = get_best_neighbor(current)
         if (best_neighbor and current) and best_neighbor.value >= current.value:
-            return current
+            climbing = False
         elif not best_neighbor:
-            return current
-        current = best_neighbor
-        print('==== {} - {} ===='.format(
-            current, current.value)
-        )
+            climbing = False
+        else:
+            current = best_neighbor
+            print('==== {} - {} ===='.format(
+                current, current.value)
+            )
+    return current
 
 
 def main():
